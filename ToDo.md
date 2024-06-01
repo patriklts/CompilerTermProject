@@ -1,6 +1,6 @@
 ##1\n
-Production Rules in Map speichern  @patriklts
-
+Production Rules in Map speichern  @patriklts✅
+ 
 ##2\n
 SLR Table in a Action Map (@patriklts) and in a Goto Map (@Nightsleeper2)
 
