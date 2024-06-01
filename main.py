@@ -2,20 +2,20 @@ import sys
 
 def read_file_to_word_array(file_path):
     # Initialize an empty list to store the words
-    words = []
+    terminals = []
 
     # Open the file in read mode
     with open(file_path, 'r') as file:
         # Read each line in the file
         for line in file:
             # Split the line into words and extend the list
-            words.extend(line.strip().split())
+            terminals.extend(line.strip().split())
 
-    return words
+    return terminals
 
 def main(file_path):
-    words_array = read_file_to_word_array(file_path)
-    print(words_array)
+    terminals_array = read_file_to_word_array(file_path)
+    print(terminals_array)
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:

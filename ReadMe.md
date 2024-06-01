@@ -92,7 +92,3 @@ If you encounter any issues:
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-Copy and paste the above content into a file named `README.md`. This file provides clear instructions on how to execute the `syntax_analyzer.py` program.
