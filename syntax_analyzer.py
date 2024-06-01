@@ -1,4 +1,5 @@
 import sys
+from stack import Stack
 
 def read_file_to_word_array(file_path):
     # Initialize an empty list to store the words
@@ -16,6 +17,10 @@ def read_file_to_word_array(file_path):
 def main(file_path):
     terminals_array = read_file_to_word_array(file_path)
     print(terminals_array)
+    
+    stack = Stack()
+    stack.push('$')
+    print(stack.pop())
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
