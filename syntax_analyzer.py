@@ -16,16 +16,14 @@ def read_file_to_word_array(file_path: str) -> List[str]:
 
     return terminals
 
-def main(file_path):
-    terminals_array = read_file_to_word_array(file_path)
-    print(terminals_array)
-
 def reduce(action: str):
     # ToDo implement logic to reduce with derivations
+    print("reduce")
     return -1
     
 def shift(action: str):
-    # ToDo implement logic to do shift operation     
+    # ToDo implement logic to do shift operation   
+    print("shift")  
     return -1
 
 def check_tokens(tokens: List[str]):          
@@ -34,11 +32,10 @@ def check_tokens(tokens: List[str]):
     stack.push(0)   # push start state to stack
     
     for index, token in enumerate(tokens):  # go through every token and perform slr parsing
-        print(token, index)
         # check if for the given state and the token there is something in the action map
         if token in action_map[stack.peek()]:            
-            action = action_map[stack.peek()][token][0] 
-            
+            action = action_map[stack.peek()][token] 
+            print(action)
             if action[0] == 'r':    # if action starts with r -> reduce
                 reduce(action)
             elif action[0] == 's':  # if action starts with s -> shift
@@ -56,5 +53,4 @@ if __name__ == '__main__':
         exit()
     
     input_file = sys.argv[1]
-    main(input_file)
     check_tokens(read_file_to_word_array(sys.argv[1]))
