@@ -23,3 +23,13 @@ class TreeNode:
     def remove_parent(self):
         self.parent.remove_child(self)
         self.parent = None
+    
+    def print_tree(self, level=0):
+        indent = "  " * level                   # 2 spaces for each level 
+        print(indent + str(self.get_data()))    # print the data of the current node
+        
+        if self.get_children() == []:           # if there are no children, return
+            return
+        
+        for child in self.get_children():       # recursively print the children
+            child.print_tree(level + 1)
