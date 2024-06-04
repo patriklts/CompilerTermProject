@@ -35,17 +35,23 @@ def check_tokens(tokens: List[str]):
         # check if for the given state and the token there is something in the action map
         if token in action_map[stack.peek()]:            
             action = action_map[stack.peek()][token] 
-            print(action)
+
             if action[0] == 'r':    # if action starts with r -> reduce
                 reduce(action)
+                
             elif action[0] == 's':  # if action starts with s -> shift
                 shift(action)
-            else:
-                print("Invalid action") # ToDo error handling einbauen
+                
+            elif action == "$":     # if action is acc -> accept
+                print("accept")     # ToDo: implement accept logic
+                break
             
         # check if for the given state and the token there is something in the goto map (?, maybe falsch: nochmal durchsprechen)
-        if token in goto_map[stack.peek()]:
+        elif token in goto_map[stack.peek()]:
             print("jetzt halt schauen welchen state man pushen muss")
+        
+        else:
+            print("error handling einbauen")
         
 if __name__ == '__main__':
     if len(sys.argv) != 2:
