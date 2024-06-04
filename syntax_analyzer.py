@@ -50,7 +50,7 @@ def accept_input(state):
         node_stack.pop().print_tree() # print the parse tree
     exit()
     
-def reduce(action: str, index: int):    
+def reduce(action: str, index: int):  
     derivation_rule = int(action[1:])
     nonTerminal_of_derivation_rule = get_lhs(derivations[derivation_rule])
     number_of_rhs_elements = get_number_of_rhs_elements(derivations[derivation_rule])
@@ -74,7 +74,6 @@ def reduce(action: str, index: int):
     
 def shift(action: str, index: int):
     stack.push(int(action[1:])) # push state on stack
-    
     node = TreeNode(tokens[index]) # create a new node with the current token
     node_stack.push(node) # push the node on the node stack
     
@@ -87,11 +86,13 @@ def check_tokens(tokens: List[str]):
         # check if for the given state and the token there is something in the action map
         current_state = stack.peek()
         next_input_symbol = tokens[index]
+        print("Current state:"+ str(current_state)+", Current Token: "+ next_input_symbol)
 
         if not tokens[index] in action_map[current_state]:  # if there is no action for the current state and the next input symbol   
             error_handling(index)
 
         action = action_map[current_state][next_input_symbol] 
+        print("Action: "+action)
 
         if action[0] == 'r':    # if action starts with r -> reduce
            reduce(action, index)
