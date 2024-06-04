@@ -18,43 +18,36 @@ def read_file_to_word_array(file_path: str) -> List[str]:
     return terminals
 
 def get_lhs(derivation_rule):
-  """Extracts the left-hand side (LHS) of a derivation rule.
-
-  Args:
-      derivation_rule: The string representing the derivation rule.
-
-  Returns:
-      The left-hand side (non-terminal) of the rule, or None if no "->" is found.
-  """
-  parts = derivation_rule.split(" -> ")
+  parts = derivation_rule.split(" -> ") # split the derivation rule by ' -> '
   return parts[0] if len(parts) > 0 else None
 
 def get_number_of_rhs_elements(derivation_rule):
-  """Extracts the number of right-hand side (RHS) elements of a derivation rule.
-
-  Args:
-      derivation_rule: The string representing the derivation rule.
-
-  Returns:
-      The number of right-hand side elements in the rule except ''.
-  """
-  parts = derivation_rule.split(" -> ")
+  parts = derivation_rule.split(" -> ") # split the derivation rule by ' -> '
   rhs_elements = [element for element in parts[1].split() if element != "''"]
 
   return len(rhs_elements) 
 
-def error_handling():
-    # TODO proper error handling
+def error_handling(index: int):
+    # Get previous 3 and next 3 tokens
+    prev_tokens = tokens[max(0, index - 3):index]
+    next_tokens = tokens[index + 1:index + 4]
+    # Print the error message
+    print(f"Syntax error at word number: {index-1}, token: {tokens[index]}") 
+    print(f"<<< {' '.join(prev_tokens)} \033[4m{tokens[index]}\033[0m {' '.join(next_tokens)} >>>")
+    
+    exit() # Exit the program
+    
+def accept_input():
+    print("accept") #TODO implement accept logic
     exit()
-
+    
 def reduce(action: str, index: int):    
     derivation_rule = int(action[1:])
     nonTerminal_of_derivation_rule = get_lhs(derivations[derivation_rule])
     number_of_rhs_elements = get_number_of_rhs_elements(derivations[derivation_rule])
     
-    if (nonTerminal_of_derivation_rule is None):
-        print("The derivation rule: ", derivation_rule, " does not exist" )
-        error_handling()
+    if (nonTerminal_of_derivation_rule is None): # if there is no derivation rule found
+        error_handling(index)
         
     # TODO parse tree hier erstellen! mithilfe der derivation rule
     
@@ -62,7 +55,8 @@ def reduce(action: str, index: int):
     for _ in range(number_of_rhs_elements):
         stack.pop()
     current_state = stack.peek()
-    stack.push(goto_map[current_state][nonTerminal_of_derivation_rule])
+    
+    stack.push(goto_map[current_state][nonTerminal_of_derivation_rule]) # push the new state on the stack
     
 def shift(action: str, index: int):
     stack.push(int(action[1:])) # push state on stack
@@ -76,9 +70,8 @@ def check_tokens(tokens: List[str]):
         current_state = stack.peek()
         next_input_symbol = tokens[index]
 
-        if not tokens[index] in action_map[current_state]:            
-            print("error handling bitte")
-            break
+        if not tokens[index] in action_map[current_state]:  # if there is no action for the current state and the next input symbol   
+            error_handling(index)
 
         action = action_map[current_state][next_input_symbol] 
 
@@ -89,10 +82,9 @@ def check_tokens(tokens: List[str]):
             index = shift(action, index)
                 
         elif action == "acc":   # if action is acc -> accept
-            print("accept")     # TODO: implement accept logic
-            break
-
-        print(tokens[index], stack.peek())
+            accept_input()
+            
+        print(tokens[index], stack.peek()) #TODO remove this line later
         
 if __name__ == '__main__':
     if len(sys.argv) != 2:
