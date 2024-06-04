@@ -48,7 +48,7 @@ action_map = {
     0: {'vtype': 's2'},
     1: {'vtype': 's2', '$': 'r1'},
     2: {'id': 's7'},
-    3: {'$': 'acc'},
+    3: {'$': 'acc'},    # TODO check if this is correct, wahrscheinlich müssen wir noch einmal reducen für den richtigen tree
     4: {'vtype': 'r2', '$': 'r2'},
     5: {'vtype': 'r3', '$': 'r3'},
     6: {'vtype': 'r4', '$': 'r4'},

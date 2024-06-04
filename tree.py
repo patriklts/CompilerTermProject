@@ -6,6 +6,7 @@ class TreeNode:
 
     def add_child(self, child):
         self.children.append(child)
+        child.parent = self
 
     def remove_child(self, child):
         self.children.remove(child)
