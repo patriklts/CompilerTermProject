@@ -14,44 +14,43 @@ def read_file_to_word_array(file_path: str) -> List[str]:
             # Split the line into words and extend the list
             terminals.extend(line.strip().split())
 
+    terminals.extend("$")
     return terminals
 
-def reduce(action: str):
+def reduce(action: str, index: int):
     # ToDo implement logic to reduce with derivations
     print("reduce")
+    #ToDo goto handling
     return -1
     
-def shift(action: str):
-    # ToDo implement logic to do shift operation   
-    print("shift")  
-    return -1
+def shift(action: str, index: int):
+    stack.push(int(action[1:])) # push state on stack
+    return index + 1
 
 def check_tokens(tokens: List[str]):          
-    stack = Stack()
-    stack.push("$") # push acceptance token to stack
-    stack.push(0)   # push start state to stack
+    index = 0
     
-    for index, token in enumerate(tokens):  # go through every token and perform slr parsing
+    while(True):
         # check if for the given state and the token there is something in the action map
-        if token in action_map[stack.peek()]:            
-            action = action_map[stack.peek()][token] 
+        state = stack.peek()
 
-            if action[0] == 'r':    # if action starts with r -> reduce
-                reduce(action)
+        if not tokens[index] in action_map[state]:            
+            print("error handling bitte")
+            break
+
+        action = action_map[state][tokens[index]] 
+
+        if action[0] == 'r':    # if action starts with r -> reduce
+           reduce(action, index)
+
+        elif action[0] == 's':  # if action starts with s -> shift
+            index = shift(action, index)
                 
-            elif action[0] == 's':  # if action starts with s -> shift
-                shift(action)
-                
-            elif action == "$":     # if action is acc -> accept
-                print("accept")     # ToDo: implement accept logic
-                break
-            
-        # check if for the given state and the token there is something in the goto map (?, maybe falsch: nochmal durchsprechen)
-        elif token in goto_map[stack.peek()]:
-            print("jetzt halt schauen welchen state man pushen muss")
-        
-        else:
-            print("error handling einbauen")
+        elif action == "acc":     # if action is acc -> accept
+            print("accept")     # ToDo: implement accept logic
+            break
+
+        print(index, stack.peek())
         
 if __name__ == '__main__':
     if len(sys.argv) != 2:
@@ -59,4 +58,6 @@ if __name__ == '__main__':
         exit()
     
     input_file = sys.argv[1]
-    check_tokens(read_file_to_word_array(sys.argv[1]))
+    stack = Stack()
+    stack.push(0)   # push start state to stack
+    check_tokens(read_file_to_word_array(input_file))
