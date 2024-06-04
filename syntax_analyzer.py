@@ -29,24 +29,42 @@ def get_lhs(derivation_rule):
   parts = derivation_rule.split(" -> ")
   return parts[0] if len(parts) > 0 else None
 
+def get_number_of_rhs_elements(derivation_rule):
+  """Extracts the number of right-hand side (RHS) elements of a derivation rule.
+
+  Args:
+      derivation_rule: The string representing the derivation rule.
+
+  Returns:
+      The number of right-hand side elements in the rule except ''.
+  """
+  parts = derivation_rule.split(" -> ")
+  rhs_elements = [element for element in parts[1].split() if element != "''"]
+
+  return len(rhs_elements) 
+
 def error_handling():
     # TODO proper error handling
     exit()
 
-def reduce(action: str, index: int):
-    print(action)
-    stack.pop() # TODO pop so oft wie rechtse seite elemente hat
+def reduce(action: str, index: int):    
     derivation_rule = int(action[1:])
     nonTerminal_of_derivation_rule = get_lhs(derivations[derivation_rule])
+    number_of_rhs_elements = get_number_of_rhs_elements(derivations[derivation_rule])
+    
     if (nonTerminal_of_derivation_rule is None):
         print("The derivation rule: ", derivation_rule, " does not exist" )
         error_handling()
+        
     # TODO parse tree hier erstellen! mithilfe der derivation rule
+    
+    # remove elements from the stack and get the current state
+    for _ in range(number_of_rhs_elements):
+        stack.pop()
     current_state = stack.peek()
     stack.push(goto_map[current_state][nonTerminal_of_derivation_rule])
     
 def shift(action: str, index: int):
-    print(action)
     stack.push(int(action[1:])) # push state on stack
     return index + 1 # move the splitter to the right
 
@@ -70,11 +88,11 @@ def check_tokens(tokens: List[str]):
         elif action[0] == 's':  # if action starts with s -> shift
             index = shift(action, index)
                 
-        elif action == "acc":     # if action is acc -> accept
+        elif action == "acc":   # if action is acc -> accept
             print("accept")     # TODO: implement accept logic
             break
 
-        print(index, stack.peek())
+        print(tokens[index], stack.peek())
         
 if __name__ == '__main__':
     if len(sys.argv) != 2:
