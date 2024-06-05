@@ -33,7 +33,7 @@ def error_handling(index: int):
     next_tokens = tokens[index + 1:index + 4]
     # Print the error message
     print(f"Syntax error at token number: {index}, token: {tokens[index]}") 
-    print(f"<<< {' '.join(prev_tokens)} \033[4m{tokens[index]}\033[0m {' '.join(next_tokens)} >>>")
+    print(f"<<< {' '.join(prev_tokens)} {tokens[index]} {' '.join(next_tokens)} >>>")
 
     exit() # Exit the program
     
