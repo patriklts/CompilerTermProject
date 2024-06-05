@@ -86,7 +86,7 @@ def check_tokens(tokens: List[str]):
         # check if for the given state and the token there is something in the action map
         current_state = stack.peek()
         next_input_symbol = tokens[index]
-        print("Current state:"+ str(current_state)+", Current Token: "+ next_input_symbol)
+        print("Current state:"+ str(current_state)+", Next Token: "+ next_input_symbol)
 
         if not tokens[index] in action_map[current_state]:  # if there is no action for the current state and the next input symbol   
             error_handling(index)
