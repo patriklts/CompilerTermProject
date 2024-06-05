@@ -58,14 +58,13 @@ def reduce(action: str, index: int):
     if (nonTerminal_of_derivation_rule is None): # if there is no derivation rule found
         error_handling(index)
         
-    # TODO parse tree hier erstellen! mithilfe der derivation rule
     parent_node = TreeNode(nonTerminal_of_derivation_rule) # create a new parent node for this derivation
     
     # remove elements from the stack and add them as children to the parent node
     for _ in range(number_of_rhs_elements):
         stack.pop()                         # remove the state from the stack
         node = node_stack.pop()             # remove the node from the node stack
-        parent_node.add_child(node)         # add the node as a child to the parent node
+        parent_node.add_child_at(node, 0)         # add the node as a child to the parent node
         
     current_state = stack.peek() # get the current state
     
