@@ -63,9 +63,9 @@ def reduce(action: str, index: int):
     
     # remove elements from the stack and add them as children to the parent node
     for _ in range(number_of_rhs_elements):
-        stack.pop()                                         # remove the state from the stack
-        node = node_stack.pop()                             # remove the node from the node stack
-        parent_node.add_child(TreeNode(node.get_data()))    # add the node as a child to the parent node
+        stack.pop()                         # remove the state from the stack
+        node = node_stack.pop()             # remove the node from the node stack
+        parent_node.add_child(node)         # add the node as a child to the parent node
         
     current_state = stack.peek() # get the current state
     
