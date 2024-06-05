@@ -39,15 +39,22 @@ def error_handling(index: int):
     exit() # Exit the program
     
 def accept_input(state):
-    print("accept") #TODO implement accept logic
+    print("accept")
     
+    # Quick and Dirty Lösung für Parse Tree zusammenführen:
+    while node_stack.size() > 1:
+        parent_node = TreeNode("CODE") # Do derivaten CODE -> TYPE' CODE
+        parent_node.add_child_at(node_stack.pop(), 0)
+        parent_node.add_child_at(node_stack.pop(), 0)
+        node_stack.push(parent_node)
+
     print("remaining stack: ")
     while not stack.is_empty():
         print(stack.pop())
         
     print("Parse tree: ")
-    while not node_stack.is_empty():
-        node_stack.pop().print_tree() # print the parse tree
+    node_stack.pop().print_tree()
+    
     exit()
     
 def reduce(action: str, index: int):  
