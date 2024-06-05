@@ -18,15 +18,14 @@ class TreeNode:
     def get_data(self):
         return self.data
     
-    def print_tree(self, level=0, prefix=""):
-        indent = '  ' * level
+    def print_tree(self, level=0, indent="", is_last=False):
+        prefix = "└── " if is_last else "├── "
+        vertical_line = "   " if is_last else "|  "
         if level == 0:  # root node
-            print(f'{indent}{self.get_data()}')
+            print(f'{self.get_data()}')
         else:
             print(f'{indent}{prefix}{self.get_data()}')
     
+        indent += vertical_line
         for i, child in enumerate(self.get_children()):
-            if i != len(self.get_children()) - 1:  # not last child
-                child.print_tree(level + 1, prefix="├── ")
-            else:  # last child
-                child.print_tree(level + 1, prefix="└── ")
+            child.print_tree(level + 1, indent, i == len(self.get_children()) - 1)
