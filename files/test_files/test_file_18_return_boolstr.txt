@@ -1,1 +1,1 @@
-vtype id lparen rparen lbrace return boolstr rbrace
+vtype id lparen rparen lbrace return boolstr semi rbrace

@@ -1,1 +1,1 @@
-vtype id lparen rparen lbrace return literal rbrace
+vtype id lparen rparen lbrace return literal semi rbrace

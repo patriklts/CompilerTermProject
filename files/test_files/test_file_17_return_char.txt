@@ -1,1 +1,1 @@
-vtype id lparen rparen lbrace return character rbrace
+vtype id lparen rparen lbrace return character semi rbrace
