@@ -2,10 +2,10 @@ import os
 import subprocess
 
 # Directory containing the test files
-test_files_dir = "C:/Users/xXcha/CompilerTermProject/files/test_files"
+test_files_dir = "/home/lukaswelker/projects/chung-ang/compiler/termProject/CompilerTermProject/files/test_files"
 
 # Output file
-output_file = "C:/Users/xXcha/CompilerTermProject/files/test_output.txt"
+output_file = "/home/lukaswelker/projects/chung-ang/compiler/termProject/CompilerTermProject/files/test_output.txt"
 
 # Open the output file with utf-8 encoding
 with open(output_file, "w", encoding="utf-8") as out_file:
@@ -20,9 +20,10 @@ with open(output_file, "w", encoding="utf-8") as out_file:
         result = subprocess.run(["python", "syntax_analyzer.py", file_path], stdout=subprocess.PIPE, env=env)
         # Decode the output using 'utf-8'
         output = result.stdout.decode('utf-8')
-        # Split the output into lines, remove blank lines, and join the lines back together
-        output = "".join(line for line in output.split("\n") if line.strip())
+        # Split the output into lines and remove unnecessary blank lines while preserving structure
+        lines = [line for line in output.split("\n") if line.strip()]
         # If there is output, write the file name and the output to the file
-        if output:
+        if lines:
             out_file.write(f"Output for {filename}:\n")
-            out_file.write(output + "\n")
+            out_file.write("\n".join(lines) + "\n\n")
+
