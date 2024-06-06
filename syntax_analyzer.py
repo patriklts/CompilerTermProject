@@ -110,6 +110,9 @@ if __name__ == '__main__':
     node_stack = Stack() # create a stack for the tree nodes
     
     tokens = read_file_to_word_array(input_file) # read file with tokens for token_list
+    if(len(tokens) == 1):
+        print("No tokens found in the input file")
+        exit()
     parse_tree_root = check_tokens(tokens)       # try slr parsing
     
     print("Parse tree: ")
