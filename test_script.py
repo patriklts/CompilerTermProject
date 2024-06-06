@@ -1,11 +1,10 @@
 import os
 import subprocess
+from config import TEST_FILES_DIR, TEST_FILE_OUTPUT
 
-# Directory containing the test files
-test_files_dir = "/home/lukaswelker/projects/chung-ang/compiler/termProject/CompilerTermProject/files/test_files"
-
-# Output file
-output_file = "/home/lukaswelker/projects/chung-ang/compiler/termProject/CompilerTermProject/files/test_output.txt"
+# Load the environment variables from the .env file
+test_files_dir = TEST_FILES_DIR
+output_file = TEST_FILE_OUTPUT
 
 # Open the output file with utf-8 encoding
 with open(output_file, "w", encoding="utf-8") as out_file:
