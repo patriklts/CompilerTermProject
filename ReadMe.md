@@ -1,6 +1,6 @@
 # Syntax Analyzer
 
-This script reads a text file and stores each word in an array. It then prints the array to the console.
+This Python program is a syntax analyzer that reads an input file containing tokens and then uses a stack-based parsing algorithm to create a parse tree, validating the syntax according to predefined grammar rules.
 
 ## Prerequisites
 
@@ -18,9 +18,7 @@ Create a text file (e.g., `your_file.txt`) with the content you want to analyze.
 
 **your_file.txt**
 ```
-Hello World
-This is a test file
-With multiple lines
+vtype id semi vtype id lparen rparen lbrace if lparen boolstr comp boolstr rparen lbrace rbrace
 ```
 
 ### 3. Run the Script
@@ -42,44 +40,23 @@ python3 syntax_analyzer.py your_file.txt
 For an input file `your_file.txt` with the following content:
 
 ```
-Hello World
-This is a test file
-With multiple lines
+vtype id semi
 ```
 
 The script will output:
 
 ```
-['Hello', 'World', 'This', 'is', 'a', 'test', 'file', 'With', 'multiple', 'lines']
+Parse tree: 
+CODE
+|  ├── TYPE    
+|  |  ├── vtype
+|  |  └── CODE'
+|  |     └── VDECL
+|  |        ├── id
+|  |        └── VDECL'
+|  |           └── semi
+|  └── CODE
 ```
-
-## Usage
-
-```sh
-python syntax_analyzer.py <input_file>
-```
-
-Replace `<input_file>` with the path to your text file.
-
-## Code Explanation
-
-The script contains two main functions:
-
-1. `read_file_to_word_array(file_path)`: Reads the file at `file_path`, splits its content into words, and returns a list of words.
-2. `main(file_path)`: Calls `read_file_to_word_array(file_path)` and prints the resulting list of words.
-
-The script also includes an execution block that handles command-line arguments:
-
-```python
-if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        print("Usage: python syntax_analyzer.py <input file>")
-    else:
-        input_file = sys.argv[1]
-        main(input_file)
-```
-
-This ensures that the script is executed with the correct number of arguments and provides usage instructions if the arguments are incorrect.
 
 ## Troubleshooting
 
@@ -88,7 +65,3 @@ If you encounter any issues:
 1. Ensure that Python 3.x is installed on your system.
 2. Verify that the file path to your input file is correct.
 3. Check the permissions of your input file to ensure it can be read by the script.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
