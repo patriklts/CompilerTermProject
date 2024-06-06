@@ -22,6 +22,5 @@ with open(output_file, "w", encoding="utf-8") as out_file:
         # Split the output into lines and remove unnecessary blank lines while preserving structure
         lines = [line for line in output.split("\n") if line.strip()]
         
-        print(f"Output for {filename}:")
         out_file.write(f"Output for {filename}:\n") 
         out_file.write("\n".join(lines) + "\n\n")
