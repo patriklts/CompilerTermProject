@@ -1,2 +1,2 @@
-TEST_FILES_DIR = ""
-TEST_FILE_OUTPUT = ""
+TEST_FILES_DIR = ""     #path to your test files directory
+TEST_FILE_OUTPUT = ""   #path to your output file
