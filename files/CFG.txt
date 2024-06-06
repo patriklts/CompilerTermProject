@@ -1,9 +1,8 @@
-CODE -> TYPE CODE  
+CODE -> CODE' CODE  
 CODE -> ''
-TYPE -> vtype CODE'
 CODE' -> VDECL
 CODE' -> FDECL
-VDECL -> id VDECL'
+VDECL -> vtype id VDECL'
 VDECL' -> semi 
 VDECL' -> ASSIGN semi
 ASSIGN -> assign RHS
