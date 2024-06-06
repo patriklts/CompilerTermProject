@@ -102,7 +102,7 @@ action_map = {
     54: {'boolstr': 's60'},
     55: {'boolstr': 's60'},
     56: {'rparen': 'r26', 'comma': 's35'},
-    57: {'vtype': 'r22', 'return': 'r22'},
+    57: {'vtype': 'r22', '$': 'r22'},
     58: {'semi': 's63'},
     59: {'rparen': 's64'},
     60: {'rparen': 'r35', 'comp': 's66'},
