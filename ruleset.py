@@ -6,7 +6,7 @@ derivations = {
     1 : "CODE -> ''",
     2 : "CODE' -> VDECL",
     3 : "CODE' -> FDECL",
-    4 : "VDECL -> id VDECL'",
+    4 : "VDECL -> vtype id VDECL'",
     5 : "VDECL' -> semi",
     6 : "VDECL' -> ASSIGN semi",
     7 : "ASSIGN -> assign RHS",
@@ -44,8 +44,8 @@ derivations = {
 
 # Dictionary for action mapping of SLR table
 action_map = {
-    0: {'vtype': 's2', 'id': 's5'},
-    1: {'vtype': 's2', "id": "s5", '$': 'r1'},
+    0: {'vtype': 's4', 'id': 's5'},
+    1: {'vtype': 's4', "id": "s5", '$': 'r1'},
     2: {'id': 'r2', "vtype": "r2", "$": 'r2'},
     3: {'$': 'r3', "vtype": "r3", "id": 'r3'},    
     4: {'id': 's7'},
