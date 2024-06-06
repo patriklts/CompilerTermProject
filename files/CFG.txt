@@ -1,8 +1,9 @@
-CODE -> CODE' CODE  
+CODE -> TYPE CODE  
 CODE -> ''
+TYPE -> vtype CODE'
 CODE' -> VDECL
 CODE' -> FDECL
-VDECL -> vtype id VDECL'
+VDECL -> id VDECL'
 VDECL' -> semi 
 VDECL' -> ASSIGN semi
 ASSIGN -> assign RHS
@@ -26,7 +27,7 @@ MOREARGS -> comma vtype id MOREARGS
 MOREARGS -> ''
 BLOCK -> STMT BLOCK 
 BLOCK -> ''
-STMT -> VDECL 
+STMT -> vtype VDECL 
 STMT -> ASSIGN semi
 STMT -> if lparen COND rparen lbrace BLOCK rbrace ELSE
 STMT -> while lparen COND rparen lbrace BLOCK rbrace
