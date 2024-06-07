@@ -57,7 +57,35 @@ CODE
 |  |           └── semi
 |  └── CODE
 ```
+### Run the Test Script
 
+For your convenience, we have provided a test script to automate the execution of multiple test cases. To use the test script, follow these steps:
+
+1. **Configuration**:
+   - Locate the `config.py.sample` file in the repository.
+   - Copy this file and rename it to `config.py`.
+   - Open `config.py` and update the following details:
+     - **Test Files Directory**: Specify the path to the directory containing your test files.
+     - **Results File Location**: Specify the preferred location where the results file should be created.
+
+2. **Running the Test Script**:
+   - Open your terminal or command prompt.
+   - Navigate to the directory where the test script is located.
+   - Run the following command:
+
+   ```sh
+   python test_script.py
+   ```
+
+   If `python` defaults to Python 2.x on your system, use `python3` instead:
+
+   ```sh
+   python3 test_script.py
+   ```
+
+   This script will execute all the test cases found in your specified test files directory and generate a results file at the location specified in `config.py`.
+
+By following these steps, you can easily manage and automate the testing process for the syntax analyzer using our provided test-cases.
 ## Troubleshooting
 
 If you encounter any issues:
